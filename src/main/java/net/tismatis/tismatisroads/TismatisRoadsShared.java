@@ -4,10 +4,7 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.LineBlock;
@@ -19,8 +16,13 @@ public class TismatisRoadsShared {
     public static String MODID = "tismatis-roads";
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
+    /* CREATIVE TABS */
+    public static final ItemGroup CT_ROADS_MARKS = FabricItemGroupBuilder.create(
+                    new Identifier(MODID, "roads_marks"))
+            .icon(() -> new ItemStack(Items.STONE))
+            .build();
+
     /* BLOCKS */
-    //public static final Block BLKS_BASE_LINE = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L1w = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L2w = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L3w = new LineBlock(FabricBlockSettings.of(Material.STONE));
@@ -50,13 +52,9 @@ public class TismatisRoadsShared {
     public static final LineBlock BLKS_L13o = new LineBlock(FabricBlockSettings.of(Material.STONE));
 
 
-    /* ITEMS */
 
-    /* CREATIVE TABS */
-    public static final ItemGroup CT_ROADS_MARKS = FabricItemGroupBuilder.create(
-                    new Identifier(MODID, "roads_marks"))
-            .icon(() -> new ItemStack(Items.STONE))
-            .build();
+
+    /* ITEMS */
 
     public static void InitializeElementsShared()
     {

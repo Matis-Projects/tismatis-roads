@@ -11,6 +11,8 @@
   "block.tismatis-roads.standard_line_white_rotate_direct_b": "White Marking Standard Rotate - Direct B",
   "block.tismatis-roads.standard_line_white_rotate_direct_c": "White Marking Standard Rotate - Direct C",
   "block.tismatis-roads.standard_line_white_rotate_soft": "White Marking Standard Rotate - Soft",
+  "block.tismatis-roads.standard_line_white_multiple_two": "White Marking Standard Multiple - Direct 3",
+  "block.tismatis-roads.standard_line_white_multiple_three": "White Marking Standard Multiple - Direct 4",
   "block.tismatis-roads.standard_line_orange": "Orange Marking Standard",
   "block.tismatis-roads.standard_line_orange_overtaking": "Orange Marking Standard - overtaking",
   "block.tismatis-roads.standard_line_orange_end": "Orange Marking Standard End",
@@ -18,6 +20,10 @@
   "block.tismatis-roads.standard_line_orange_stop_left": "Orange Marking Standard Stop - Left only",
   "block.tismatis-roads.standard_line_orange_stop_center": "Orange Marking Standard Stop - Center",
   "block.tismatis-roads.standard_line_orange_stop_right": "Orange Marking Standard Stop - Right only",
-  "block.tismatis-roads.standard_line_orange_rotate_direct": "Orange Marking Standard Rotate - Direct",
-  "block.tismatis-roads.standard_line_orange_rotate_soft": "Orange Marking Standard Rotate Soft"
+  "block.tismatis-roads.standard_line_orange_rotate_direct_a": "Orange Marking Standard Rotate - Direct A",
+  "block.tismatis-roads.standard_line_orange_rotate_direct_b": "Orange Marking Standard Rotate - Direct B",
+  "block.tismatis-roads.standard_line_orange_rotate_direct_c": "Orange Marking Standard Rotate - Direct C",
+  "block.tismatis-roads.standard_line_orange_rotate_soft": "Orange Marking Standard Rotate Soft",
+  "block.tismatis-roads.standard_line_orange_multiple_two": "Orange Marking Standard Multiple - Direct 3",
+  "block.tismatis-roads.standard_line_orange_multiple_three": "Orange Marking Standard Multiple - Direct 4"
 }
