@@ -1,29 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "tismatis-roads",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Tismatis's Roads",
+  "description": "Make your roads with this mod !",
   "authors": [
-    "Me!"
+    "Tismatis"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://matis.dev/",
+    "sources": "https://github.com/GameursProduction/Tismatis-roads"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/tismatis-roads/icon.png",
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "net.fabricmc.example.ExampleMod"
+    "client": [
+      "net.tismatis.tismatisroads.TismatisRoadsClient"
+    ],
+    "server": [
+      "net.tismatis.tismatisroads.TismatisRoadsServer"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "tismatis-roads.mixins.json"
   ],
 
   "depends": {

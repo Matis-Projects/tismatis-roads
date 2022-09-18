@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tismatis-roads:item/standard_line_orange_rotate_direct_c"
+  }
+}

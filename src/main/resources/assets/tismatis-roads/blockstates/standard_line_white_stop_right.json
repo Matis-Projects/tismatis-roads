@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "tismatis-roads:block/standard_line_white_stop_right" },
+    "facing=east": { "model": "tismatis-roads:block/standard_line_white_stop_right", "y": 90 },
+    "facing=south": { "model": "tismatis-roads:block/standard_line_white_stop_right", "y": 180 },
+    "facing=west": { "model": "tismatis-roads:block/standard_line_white_stop_right", "y": 270 }
+  }
+}
