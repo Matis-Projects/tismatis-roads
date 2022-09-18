@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,open=false": { "model": "tismatis-roads:block/rail_crossing_gate" },
+    "facing=east,open=false": { "model": "tismatis-roads:block/rail_crossing_gate", "y": 90 },
+    "facing=south,open=false": { "model": "tismatis-roads:block/rail_crossing_gate", "y": 180 },
+    "facing=west,open=false": { "model": "tismatis-roads:block/rail_crossing_gate", "y": 270 },
+    "facing=north,open=true": { "model": "tismatis-roads:block/rail_crossing_gate_closed" },
+    "facing=east,open=true": { "model": "tismatis-roads:block/rail_crossing_gate_closed", "y": 90 },
+    "facing=south,open=true": { "model": "tismatis-roads:block/rail_crossing_gate_closed", "y": 180 },
+    "facing=west,open=true": { "model": "tismatis-roads:block/rail_crossing_gate_closed", "y": 270 }
+  }
+}

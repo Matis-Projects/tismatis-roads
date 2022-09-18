@@ -21,7 +21,7 @@ public class TismatisRoadsClient implements ClientModInitializer {
     public void onInitializeClient() {
         InitializeElementsShared();
 
-        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L1w, RenderLayer.getCutout());
+        /*BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L1w, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L2w, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L3w, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L4w, RenderLayer.getCutout());
@@ -35,7 +35,11 @@ public class TismatisRoadsClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L4o, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L5o, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L6o, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L7o, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L7o, RenderLayer.getCutout());*/
+
+        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_RCp, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_RCg, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_RCgp, RenderLayer.getCutout());
 
         LOGGER.info("[TismatisRoads-FABRIC] The client part has loaded!");
     }

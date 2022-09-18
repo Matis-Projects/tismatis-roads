@@ -7,8 +7,7 @@ import net.minecraft.block.Material;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.tismatis.tismatisroads.blocks.LineBlock;
-import net.tismatis.tismatisroads.blocks.LineBlockSpecial;
+import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.PaintItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +23,10 @@ public class TismatisRoadsShared {
     /* CREATIVE TABS */
     public static final ItemGroup CT_ROADS_MARKS = FabricItemGroupBuilder.create(
                     new Identifier(MODID, "roads_marks"))
+            .icon(() -> new ItemStack(Items.STONE))
+            .build();
+    public static final ItemGroup CT_TRAFFICS = FabricItemGroupBuilder.create(
+                    new Identifier(MODID, "traffics"))
             .icon(() -> new ItemStack(Items.STONE))
             .build();
 
@@ -55,6 +58,10 @@ public class TismatisRoadsShared {
     public static final LineBlock BLKS_L11o = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L12o = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L13o = new LineBlock(FabricBlockSettings.of(Material.STONE));
+
+    public static final RailCrossingPot BLKS_RCp = new RailCrossingPot(FabricBlockSettings.of(Material.STONE));
+    public static final RailCrossingGate BLKS_RCg = new RailCrossingGate(FabricBlockSettings.of(Material.STONE));
+    public static final RailCrossingGatePot BLKS_RCgp = new RailCrossingGatePot(FabricBlockSettings.of(Material.STONE));
 
     /* ITEMS */
     public static final Item PAINT_TOOL = new PaintItem(new FabricItemSettings().group(CT_ROADS_MARKS));
@@ -119,6 +126,13 @@ public class TismatisRoadsShared {
             Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_multiple_three"), BLKS_L13o);
             Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_multiple_three"), new BlockItem(BLKS_L13o, new FabricItemSettings().group(CT_ROADS_MARKS)));
 
+        /* Rail Crossing */
+            Registry.register(Registry.BLOCK, new Identifier(MODID, "rail_crossing_pot"), BLKS_RCp);
+            Registry.register(Registry.ITEM, new Identifier(MODID, "rail_crossing_pot"), new BlockItem(BLKS_RCp, new FabricItemSettings().group(CT_TRAFFICS)));
+            Registry.register(Registry.BLOCK, new Identifier(MODID, "rail_crossing_gate"), BLKS_RCg);
+            Registry.register(Registry.ITEM, new Identifier(MODID, "rail_crossing_gate"), new BlockItem(BLKS_RCg, new FabricItemSettings().group(CT_TRAFFICS)));
+            Registry.register(Registry.BLOCK, new Identifier(MODID, "rail_crossing_gate_pot"), BLKS_RCgp);
+            Registry.register(Registry.ITEM, new Identifier(MODID, "rail_crossing_gate_pot"), new BlockItem(BLKS_RCgp, new FabricItemSettings().group(CT_TRAFFICS)));
         /* ITEMS ONLY */
             Registry.register(Registry.ITEM, new Identifier(MODID, "paint_tool"), PAINT_TOOL);
         /* CREATIVE TAB */
