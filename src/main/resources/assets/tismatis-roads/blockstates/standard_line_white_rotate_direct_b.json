@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b" },
-    "facing=east": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b", "y": 90 },
-    "facing=south": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b", "y": 180 },
-    "facing=west": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b", "y": 270 }
+    "facing=north,reverse=false": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b" },
+    "facing=east,reverse=false": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b", "y": 90 },
+    "facing=south,reverse=false": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b", "y": 180 },
+    "facing=west,reverse=false": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b", "y": 270 },
+    "facing=north,reverse=true": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b_reverse" },
+    "facing=east,reverse=true": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b_reverse", "y": 90 },
+    "facing=south,reverse=true": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b_reverse", "y": 180 },
+    "facing=west,reverse=true": { "model": "tismatis-roads:block/standard_line_white_rotate_direct_b_reverse", "y": 270 }
   }
 }

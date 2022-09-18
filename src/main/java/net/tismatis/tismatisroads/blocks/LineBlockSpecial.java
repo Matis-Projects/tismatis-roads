@@ -5,16 +5,19 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-public class BaseRotateBlock extends Block {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public BaseRotateBlock(Settings settings) {
+public class LineBlockSpecial extends LineBlock{
+    public static final BooleanProperty REVERSE = BooleanProperty.of("reverse");
+
+    public LineBlockSpecial(Settings settings) {
         super(settings);
+        this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(REVERSE, false));
     }
 
     @Nullable
@@ -35,6 +38,6 @@ public class BaseRotateBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(new Property[]{FACING, REVERSE});
     }
 }

@@ -8,8 +8,13 @@ import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.LineBlock;
+import net.tismatis.tismatisroads.blocks.LineBlockSpecial;
+import net.tismatis.tismatisroads.items.PaintItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TismatisRoadsShared {
 
@@ -31,8 +36,8 @@ public class TismatisRoadsShared {
     public static final LineBlock BLKS_L6w = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L7w = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L8w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L9w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L10w = new LineBlock(FabricBlockSettings.of(Material.STONE));
+    public static final LineBlock BLKS_L9w = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
+    public static final LineBlock BLKS_L10w = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L11w = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L12w = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L13w = new LineBlock(FabricBlockSettings.of(Material.STONE));
@@ -45,16 +50,15 @@ public class TismatisRoadsShared {
     public static final LineBlock BLKS_L6o = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L7o = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L8o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L9o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L10o = new LineBlock(FabricBlockSettings.of(Material.STONE));
+    public static final LineBlock BLKS_L9o = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
+    public static final LineBlock BLKS_L10o = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L11o = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L12o = new LineBlock(FabricBlockSettings.of(Material.STONE));
     public static final LineBlock BLKS_L13o = new LineBlock(FabricBlockSettings.of(Material.STONE));
 
-
-
-
     /* ITEMS */
+    public static final Item PAINT_TOOL = new PaintItem(new FabricItemSettings().group(CT_ROADS_MARKS));
+
 
     public static void InitializeElementsShared()
     {
@@ -116,7 +120,7 @@ public class TismatisRoadsShared {
             Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_multiple_three"), new BlockItem(BLKS_L13o, new FabricItemSettings().group(CT_ROADS_MARKS)));
 
         /* ITEMS ONLY */
-
+            Registry.register(Registry.ITEM, new Identifier(MODID, "paint_tool"), PAINT_TOOL);
         /* CREATIVE TAB */
 
 
