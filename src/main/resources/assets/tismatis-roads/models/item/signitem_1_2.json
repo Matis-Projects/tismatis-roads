@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "tismatis-roads:item/signitem_1_2"
+    "layer0": "tismatis-roads:block/signblock_1_2"
   }
 }

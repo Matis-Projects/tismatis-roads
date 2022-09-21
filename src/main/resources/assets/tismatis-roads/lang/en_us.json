@@ -44,5 +44,8 @@
   "item.tismatis-roads.signitem_1_8": "EU Sign - Speed Limit 50",
   "item.tismatis-roads.signitem_1_9": "EU Sign - Speed Limit 40",
   "item.tismatis-roads.signitem_1_10": "EU Sign - Speed Limit 30",
-  "item.tismatis-roads.signitem_1_11": "EU Sign - Speed Limit 20"
+  "item.tismatis-roads.signitem_1_11": "EU Sign - Speed Limit 20",
+  "item.tismatis-roads.signitem_1_12": "EU Sign - Speed Limit 10",
+  "item.tismatis-roads.signitem_1_13": "EU Sign - Prohibition Overtaking",
+  "item.tismatis-roads.signitem_1_14": "EU Sign - Prohibition Overtaking End"
 }

@@ -35,6 +35,8 @@ public class TismatisRoadsShared {
 
     public static void InitializeElementsShared()
     {
+
+
         /* BLOCKS WITH ITEMS */
             /* WHITE */
                 RegisterWithClass("Block","standard_line_white", CT_ROADS_MARKS, "LineBlock");
@@ -73,9 +75,9 @@ public class TismatisRoadsShared {
                 RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock");
         /* ITEMS ONLY */
             /* PAINT-TOOL */
-                RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintTool");
+                RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintItem");
             /* SIGN-TOOL */
-                for(int i = 1; i < 12; ++i)
+                for(int i = 1; i < 15; ++i)
                 {
                     RegisterWithClass("Item", "signitem_1_" + i, CT_SIGNS, "SignTool");
                 }
@@ -87,7 +89,12 @@ public class TismatisRoadsShared {
 
     public static void RegisterWithClass(String what, String path, ItemGroup it)
     {
-        RegisterWithClass(what, path, it, "Block");
+        if(what == "Block")
+        {
+            RegisterWithClass(what, path, it, "Block");
+        }else{
+            RegisterWithClass(what, path, it, "Items");
+        }
     }
     public static void RegisterWithClass(String what, String path, ItemGroup it,String type)
     {
@@ -112,6 +119,8 @@ public class TismatisRoadsShared {
                 RegisterABlock(new BaseRotateBlock(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "Block"){
                 RegisterABlock(new Block(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else{
+                LOGGER.error("Can't handle this object: name: '" + path + "', type: '" + what + "' !");
             }
         }else{
             if(type == "PaintItem")
@@ -123,6 +132,9 @@ public class TismatisRoadsShared {
             }else if(type == "Items")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new Item(new FabricItemSettings().group(it)));
+
+            }else{
+                LOGGER.error("Can't handle this object: name: '" + path + "', type: '" + what + "' !");
             }
         }
     }

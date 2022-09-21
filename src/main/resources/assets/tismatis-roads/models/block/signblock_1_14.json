@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "tismatis-roads:block/signblock_1_7",
+		"0": "tismatis-roads:block/signblock_1_14",
 		"1": "tismatis-roads:block/air",
 		"2": "minecraft:block/iron_block",
 		"particle": "minecraft:block/iron_block"
