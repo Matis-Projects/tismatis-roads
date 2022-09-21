@@ -35,11 +35,11 @@ public class TismatisRoadsClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L4o, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L5o, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L6o, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L7o, RenderLayer.getCutout());*/
+        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_L7o, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_RCp, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_RCg, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_RCgp, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(TismatisRoadsShared.BLKS_RCgp, RenderLayer.getCutout());*/
 
         LOGGER.info("[TismatisRoads-FABRIC] The client part has loaded!");
     }

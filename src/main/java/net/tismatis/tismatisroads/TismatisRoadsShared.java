@@ -3,17 +3,16 @@ package net.tismatis.tismatisroads;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.PaintItem;
+import net.tismatis.tismatisroads.items.SignTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TismatisRoadsShared {
 
@@ -22,122 +21,119 @@ public class TismatisRoadsShared {
 
     /* CREATIVE TABS */
     public static final ItemGroup CT_ROADS_MARKS = FabricItemGroupBuilder.create(
-                    new Identifier(MODID, "roads_marks"))
+                    new Identifier(MODID, "creative-tab_roads-marks"))
             .icon(() -> new ItemStack(Items.STONE))
             .build();
     public static final ItemGroup CT_TRAFFICS = FabricItemGroupBuilder.create(
-                    new Identifier(MODID, "traffics"))
+                    new Identifier(MODID, "creative-tab_traffics"))
             .icon(() -> new ItemStack(Items.STONE))
             .build();
-
-    /* BLOCKS */
-    public static final LineBlock BLKS_L1w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L2w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L3w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L4w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L5w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L6w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L7w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L8w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L9w = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L10w = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L11w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L12w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L13w = new LineBlock(FabricBlockSettings.of(Material.STONE));
-
-    public static final LineBlock BLKS_L1o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L2o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L3o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L4o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L5o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L6o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L7o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L8o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L9o = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L10o = new LineBlockSpecial(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L11o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L12o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-    public static final LineBlock BLKS_L13o = new LineBlock(FabricBlockSettings.of(Material.STONE));
-
-    public static final RailCrossingPot BLKS_RCp = new RailCrossingPot(FabricBlockSettings.of(Material.STONE));
-    public static final RailCrossingGate BLKS_RCg = new RailCrossingGate(FabricBlockSettings.of(Material.STONE));
-    public static final RailCrossingGatePot BLKS_RCgp = new RailCrossingGatePot(FabricBlockSettings.of(Material.STONE));
-
-    /* ITEMS */
-    public static final Item PAINT_TOOL = new PaintItem(new FabricItemSettings().group(CT_ROADS_MARKS));
-
+    public static final ItemGroup CT_SIGNS = FabricItemGroupBuilder.create(
+                    new Identifier(MODID, "creative-tab_signs"))
+            .icon(() -> new ItemStack(Items.STONE))
+            .build();
 
     public static void InitializeElementsShared()
     {
         /* BLOCKS WITH ITEMS */
             /* WHITE */
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white"), BLKS_L1w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white"), new BlockItem(BLKS_L1w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_overtaking"), BLKS_L2w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_overtaking"), new BlockItem(BLKS_L2w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_end"), BLKS_L3w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_end"), new BlockItem(BLKS_L3w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_stop_left"), BLKS_L4w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_stop_left"), new BlockItem(BLKS_L4w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_stop_center"), BLKS_L5w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_stop_center"), new BlockItem(BLKS_L5w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_stop_right"), BLKS_L6w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_stop_right"), new BlockItem(BLKS_L6w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_stop"), BLKS_L7w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_stop"), new BlockItem(BLKS_L7w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_rotate_soft"), BLKS_L8w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_rotate_soft"), new BlockItem(BLKS_L8w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_rotate_direct_a"), BLKS_L9w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_rotate_direct_a"), new BlockItem(BLKS_L9w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_rotate_direct_b"), BLKS_L10w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_rotate_direct_b"), new BlockItem(BLKS_L10w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_rotate_direct_c"), BLKS_L11w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_rotate_direct_c"), new BlockItem(BLKS_L11w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_multiple_two"), BLKS_L12w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_multiple_two"), new BlockItem(BLKS_L12w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_white_multiple_three"), BLKS_L13w);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_white_multiple_three"), new BlockItem(BLKS_L13w, new FabricItemSettings().group(CT_ROADS_MARKS)));
-
+                RegisterWithClass("Block","standard_line_white", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_overtaking", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_end", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_stop_left", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_stop_center", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_stop_right", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_stop", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_rotate_soft", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_rotate_direct_a", CT_ROADS_MARKS, "LineBlockSpecial");
+                RegisterWithClass("Block","standard_line_white_rotate_direct_b", CT_ROADS_MARKS, "LineBlockSpecial");
+                RegisterWithClass("Block","standard_line_white_rotate_direct_c", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_multiple_two", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_white_multiple_three", CT_ROADS_MARKS, "LineBlock");
             /* ORANGE */
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange"), BLKS_L1o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange"), new BlockItem(BLKS_L1o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_overtaking"), BLKS_L2o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_overtaking"), new BlockItem(BLKS_L2o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_end"), BLKS_L3o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_end"), new BlockItem(BLKS_L3o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_stop_left"), BLKS_L4o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_stop_left"), new BlockItem(BLKS_L4o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_stop_center"), BLKS_L5o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_stop_center"), new BlockItem(BLKS_L5o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_stop_right"), BLKS_L6o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_stop_right"), new BlockItem(BLKS_L6o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_stop"), BLKS_L7o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_stop"), new BlockItem(BLKS_L7o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_rotate_soft"), BLKS_L8o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_rotate_soft"), new BlockItem(BLKS_L8o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_rotate_direct_a"), BLKS_L9o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_rotate_direct_a"), new BlockItem(BLKS_L9o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_rotate_direct_b"), BLKS_L10o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_rotate_direct_b"), new BlockItem(BLKS_L10o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_rotate_direct_c"), BLKS_L11o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_rotate_direct_c"), new BlockItem(BLKS_L11o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_multiple_two"), BLKS_L12o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_multiple_two"), new BlockItem(BLKS_L12o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "standard_line_orange_multiple_three"), BLKS_L13o);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "standard_line_orange_multiple_three"), new BlockItem(BLKS_L13o, new FabricItemSettings().group(CT_ROADS_MARKS)));
-
-        /* Rail Crossing */
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "rail_crossing_pot"), BLKS_RCp);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "rail_crossing_pot"), new BlockItem(BLKS_RCp, new FabricItemSettings().group(CT_TRAFFICS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "rail_crossing_gate"), BLKS_RCg);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "rail_crossing_gate"), new BlockItem(BLKS_RCg, new FabricItemSettings().group(CT_TRAFFICS)));
-            Registry.register(Registry.BLOCK, new Identifier(MODID, "rail_crossing_gate_pot"), BLKS_RCgp);
-            Registry.register(Registry.ITEM, new Identifier(MODID, "rail_crossing_gate_pot"), new BlockItem(BLKS_RCgp, new FabricItemSettings().group(CT_TRAFFICS)));
+                RegisterWithClass("Block","standard_line_orange", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_overtaking", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_end", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_stop_left", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_stop_center", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_stop_right", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_stop", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_rotate_soft", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_rotate_direct_a", CT_ROADS_MARKS, "LineBlockSpecial");
+                RegisterWithClass("Block","standard_line_orange_rotate_direct_b", CT_ROADS_MARKS, "LineBlockSpecial");
+                RegisterWithClass("Block","standard_line_orange_rotate_direct_c", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_multiple_two", CT_ROADS_MARKS, "LineBlock");
+                RegisterWithClass("Block","standard_line_orange_multiple_three", CT_ROADS_MARKS, "LineBlock");
+            /* Rail Crossing */
+                RegisterWithClass("Block","rail_crossing_pot", CT_TRAFFICS, "RailCrossingPot");
+                RegisterWithClass("Block","rail_crossing_gate", CT_TRAFFICS, "RailCrossingGate");
+                RegisterWithClass("Block","rail_crossing_gate_pot", CT_TRAFFICS, "RailCrossingGatePot");
+            /* Sign Block */
+                RegisterWithClass("Block", "stone_pole", CT_SIGNS, "SignPoleBlock");
+                RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock");
         /* ITEMS ONLY */
-            Registry.register(Registry.ITEM, new Identifier(MODID, "paint_tool"), PAINT_TOOL);
+            /* PAINT-TOOL */
+                RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintTool");
+            /* SIGN-TOOL */
+                for(int i = 1; i < 12; ++i)
+                {
+                    RegisterWithClass("Item", "signitem_1_" + i, CT_SIGNS, "SignTool");
+                }
         /* CREATIVE TAB */
 
 
         LOGGER.info("[TismatisRoads-FABRIC] The shared part has loaded!");
+    }
+
+    public static void RegisterWithClass(String what, String path, ItemGroup it)
+    {
+        RegisterWithClass(what, path, it, "Block");
+    }
+    public static void RegisterWithClass(String what, String path, ItemGroup it,String type)
+    {
+        if(what == "Block")
+        {
+            if(type == "LineBlock")
+            {
+                RegisterABlock(new LineBlock(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "LineBlockSpecial") {
+                RegisterABlock(new LineBlockSpecial(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "RailCrossingPot"){
+                RegisterABlock(new RailCrossingPot(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "RailCrossingGate"){
+                RegisterABlock(new RailCrossingGate(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "RailCrossingGatePot"){
+                RegisterABlock(new RailCrossingGatePot(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "SignBlock"){
+                RegisterABlock(new SignBlock(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "SignPoleBlock"){
+                RegisterABlock(new SignPoleBlock(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "BaseRotateBlock"){
+                RegisterABlock(new BaseRotateBlock(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "Block"){
+                RegisterABlock(new Block(FabricBlockSettings.of(Material.STONE)), path, it);
+            }
+        }else{
+            if(type == "PaintItem")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new PaintItem(new FabricItemSettings().group(it)));
+            }else if(type == "SignTool")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool(new FabricItemSettings().group(it)));
+            }else if(type == "Items")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new Item(new FabricItemSettings().group(it)));
+            }
+        }
+    }
+
+    public static void RegisterABlock(Block blk, String path, ItemGroup it)
+    {
+        Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
+        RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(it)), path);
+    }
+    public static void RegisterAItem(Item itm, String path)
+    {
+        Registry.register(Registry.ITEM, new Identifier(MODID, path), itm);
     }
 }

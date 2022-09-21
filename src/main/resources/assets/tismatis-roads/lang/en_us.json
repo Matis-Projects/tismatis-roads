@@ -1,6 +1,7 @@
 {
-  "itemGroup.tismatis-roads.roads_marks": "Markings",
-  "itemGroup.tismatis-roads.traffics": "Markings",
+  "itemGroup.tismatis-roads.creative-tab_roads-marks": "Tismatis's Roads - Markings",
+  "itemGroup.tismatis-roads.creative-tab_traffics": "Tismatis's Roads - Traffics",
+  "itemGroup.tismatis-roads.creative-tab_signs": "Tismatis's Roads - Signs",
   "item.tismatis-roads.paint_tool":  "Paint tool",
   "block.tismatis-roads.rail_crossing_pot": "Rail Crossing Pole",
   "block.tismatis-roads.rail_crossing_gate": "Rail Crossing Gate",
@@ -30,5 +31,18 @@
   "block.tismatis-roads.standard_line_orange_rotate_direct_c": "Orange Marking Standard Curve - Direct C",
   "block.tismatis-roads.standard_line_orange_rotate_soft": "Orange Marking Standard Rotate Soft",
   "block.tismatis-roads.standard_line_orange_multiple_two": "Orange Marking Standard Multiple - Direct 3",
-  "block.tismatis-roads.standard_line_orange_multiple_three": "Orange Marking Standard Multiple - Direct 4"
+  "block.tismatis-roads.standard_line_orange_multiple_three": "Orange Marking Standard Multiple - Direct 4",
+  "block.tismatis-roads.stone_pole": "Stone Pole",
+  "block.tismatis-roads.signblock_1": "Base Sign - Circle",
+  "item.tismatis-roads.signitem_1_1": "EU Sign - Base",
+  "item.tismatis-roads.signitem_1_2": "EU Sign - Speed Limit 130",
+  "item.tismatis-roads.signitem_1_3": "EU Sign - Speed Limit 110",
+  "item.tismatis-roads.signitem_1_4": "EU Sign - Speed Limit 90",
+  "item.tismatis-roads.signitem_1_5": "EU Sign - Speed Limit 80",
+  "item.tismatis-roads.signitem_1_6": "EU Sign - Speed Limit 70",
+  "item.tismatis-roads.signitem_1_7": "EU Sign - Speed Limit 60",
+  "item.tismatis-roads.signitem_1_8": "EU Sign - Speed Limit 50",
+  "item.tismatis-roads.signitem_1_9": "EU Sign - Speed Limit 40",
+  "item.tismatis-roads.signitem_1_10": "EU Sign - Speed Limit 30",
+  "item.tismatis-roads.signitem_1_11": "EU Sign - Speed Limit 20"
 }
