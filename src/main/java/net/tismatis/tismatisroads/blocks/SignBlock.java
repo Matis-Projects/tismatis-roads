@@ -12,7 +12,7 @@ import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
 public class SignBlock extends BaseRotateBlock{
-    public static IntProperty SIGN_ID = IntProperty.of("signid", 0, 14);
+    public static IntProperty SIGN_ID = IntProperty.of("signid", 0, 28);
 
     public SignBlock(Settings settings) {
         super(settings.nonOpaque());

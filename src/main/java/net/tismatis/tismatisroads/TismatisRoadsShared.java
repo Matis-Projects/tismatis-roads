@@ -77,7 +77,7 @@ public class TismatisRoadsShared {
             /* PAINT-TOOL */
                 RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintItem");
             /* SIGN-TOOL */
-                for(int i = 1; i < 15; ++i)
+                for(int i = 1; i < 29; ++i)
                 {
                     RegisterWithClass("Item", "signitem_1_" + i, CT_SIGNS, "SignTool");
                 }
