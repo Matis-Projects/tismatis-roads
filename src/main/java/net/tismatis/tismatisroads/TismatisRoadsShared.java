@@ -10,7 +10,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.PaintItem;
-import net.tismatis.tismatisroads.items.SignTool;
+import net.tismatis.tismatisroads.items.SignTool1;
+import net.tismatis.tismatisroads.items.SignTool2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,14 +73,21 @@ public class TismatisRoadsShared {
                 RegisterWithClass("Block","rail_crossing_gate_pot", CT_TRAFFICS, "RailCrossingGatePot");
             /* Sign Block */
                 RegisterWithClass("Block", "stone_pole", CT_SIGNS, "SignPoleBlock");
-                RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock");
+                RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock1");
+                RegisterWithClass("Block", "signblock_2", CT_SIGNS, "SignBlock2");
+            /* Traffic Light */
+                /*RegisterWithClass("Block", "traffic_light_c1_little", CT_TRAFFICS, "TrafficLight");*/
         /* ITEMS ONLY */
             /* PAINT-TOOL */
                 RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintItem");
             /* SIGN-TOOL */
                 for(int i = 1; i < 29; ++i)
                 {
-                    RegisterWithClass("Item", "signitem_1_" + i, CT_SIGNS, "SignTool");
+                    RegisterWithClass("Item", "signitem_1_" + i, CT_SIGNS, "SignTool1");
+                }
+                for(int i = 1; i < 12; ++i)
+                {
+                    RegisterWithClass("Item", "signitem_2_" + i, CT_SIGNS, "SignTool2");
                 }
         /* CREATIVE TAB */
 
@@ -111,10 +119,14 @@ public class TismatisRoadsShared {
                 RegisterABlock(new RailCrossingGate(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "RailCrossingGatePot"){
                 RegisterABlock(new RailCrossingGatePot(FabricBlockSettings.of(Material.STONE)), path, it);
-            }else if(type == "SignBlock"){
-                RegisterABlock(new SignBlock(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "SignBlock1") {
+                RegisterABlock(new SignBlock1(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "SignBlock2"){
+                RegisterABlock(new SignBlock2(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "SignPoleBlock"){
                 RegisterABlock(new SignPoleBlock(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "TrafficLight"){
+                RegisterABlock(new TrafficLight(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "BaseRotateBlock"){
                 RegisterABlock(new BaseRotateBlock(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "Block"){
@@ -126,9 +138,12 @@ public class TismatisRoadsShared {
             if(type == "PaintItem")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new PaintItem(new FabricItemSettings().group(it)));
-            }else if(type == "SignTool")
+            }else if(type == "SignTool1")
             {
-                Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool(new FabricItemSettings().group(it)));
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool1(new FabricItemSettings().group(it)));
+            }else if(type == "SignTool2")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool2(new FabricItemSettings().group(it)));
             }else if(type == "Items")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new Item(new FabricItemSettings().group(it)));

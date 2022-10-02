@@ -4,14 +4,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
-import static net.tismatis.tismatisroads.blocks.SignBlock.SIGN_ID;
+import static net.tismatis.tismatisroads.blocks.SignBlock2.SIGN_ID;
 
-public class SignTool extends Item {
+public class SignTool2 extends Item {
 
-    public SignTool(Settings settings) {
+    public SignTool2(Settings settings) {
         super(settings);
     }
 

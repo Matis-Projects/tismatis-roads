@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north,mode=0": { "model": "tismatis-roads:block/traffic_light_c1_little_red" },
+     "facing=east,mode=0": { "model": "tismatis-roads:block/traffic_light_c1_little_red", "y": 90 },
+    "facing=south,mode=0": { "model": "tismatis-roads:block/traffic_light_c1_little_red", "y": 180 },
+     "facing=west,mode=0": { "model": "tismatis-roads:block/traffic_light_c1_little_red", "y": 270 },
+    "facing=north,mode=1": { "model": "tismatis-roads:block/traffic_light_c1_little_orange" },
+     "facing=east,mode=1": { "model": "tismatis-roads:block/traffic_light_c1_little_orange", "y": 90 },
+    "facing=south,mode=1": { "model": "tismatis-roads:block/traffic_light_c1_little_orange", "y": 180 },
+     "facing=west,mode=1": { "model": "tismatis-roads:block/traffic_light_c1_little_orange", "y": 270 },
+    "facing=north,mode=2": { "model": "tismatis-roads:block/traffic_light_c1_little_green" },
+     "facing=east,mode=2": { "model": "tismatis-roads:block/traffic_light_c1_little_green", "y": 90 },
+    "facing=south,mode=2": { "model": "tismatis-roads:block/traffic_light_c1_little_green", "y": 180 },
+     "facing=west,mode=2": { "model": "tismatis-roads:block/traffic_light_c1_little_green", "y": 270 }
+  }
+}

@@ -11,10 +11,10 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-public class SignBlock extends BaseRotateBlock{
-    public static IntProperty SIGN_ID = IntProperty.of("signid", 0, 28);
+public class SignBlock2 extends BaseRotateBlock{
+    public static IntProperty SIGN_ID = IntProperty.of("signid", 0, 12);
 
-    public SignBlock(Settings settings) {
+    public SignBlock2(Settings settings) {
         super(settings.nonOpaque());
         this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(SIGN_ID, 0));
     }

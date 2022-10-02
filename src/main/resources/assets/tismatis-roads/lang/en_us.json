@@ -61,5 +61,17 @@
   "item.tismatis-roads.signitem_1_25": "EU Sign - Prohibition Park Between the 16 and the 31",
   "item.tismatis-roads.signitem_1_26": "EU Sign - Prohibition Vehicle with a motor",
   "item.tismatis-roads.signitem_1_27": "EU Sign - Prohibition Overtaking",
-  "item.tismatis-roads.signitem_1_28": "EU Sign - Way Without Priority to Overtaking"
+  "item.tismatis-roads.signitem_1_28": "EU Sign - Way Without Priority to Overtaking",
+  "block.tismatis-roads.signblock_2": "Base Sign - Circle",
+  "item.tismatis-roads.signitem_2_1": "EU Sign - Triangle",
+  "item.tismatis-roads.signitem_2_2": "EU Sign - Turn Right",
+  "item.tismatis-roads.signitem_2_3": "EU Sign - Turn Left",
+  "item.tismatis-roads.signitem_2_4": "EU Sign - Succession of bends starting by Left",
+  "item.tismatis-roads.signitem_2_5": "EU Sign - Succession of bends starting by Right",
+  "item.tismatis-roads.signitem_2_6": "EU Sign - Succession of Speed Bump",
+  "item.tismatis-roads.signitem_2_7": "EU Sign - Speed Bump",
+  "item.tismatis-roads.signitem_2_8": "EU Sign - Narrow passage",
+  "item.tismatis-roads.signitem_2_9": "EU Sign - Narrow passage not logic",
+  "item.tismatis-roads.signitem_2_10": "EU Sign - Narrow passage by Left",
+  "item.tismatis-roads.signitem_2_11": "EU Sign - Narrow passage by Right"
 }
