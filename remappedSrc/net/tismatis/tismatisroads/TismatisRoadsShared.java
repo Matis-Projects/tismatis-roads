@@ -76,7 +76,7 @@ public class TismatisRoadsShared {
                 RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock1");
                 RegisterWithClass("Block", "signblock_2", CT_SIGNS, "SignBlock2");
             /* Traffic Light */
-                RegisterWithClass("Block", "traffic_light_c1_little", CT_TRAFFICS, "TrafficLight");
+                //RegisterWithClass("Block", "traffic_light_c1_little", CT_TRAFFICS, "TrafficLight");
         /* ITEMS ONLY */
             /* PAINT-TOOL */
                 RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintItem");
