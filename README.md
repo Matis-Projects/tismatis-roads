@@ -6,5 +6,5 @@ For setup instructions please see the [fabric wiki page](https://fabricmc.net/wi
 
 ## Other
 
-The java version: JDK_16
+The java version: JDK_17
 The minecraft version: 1.19.2 (⚠️ Not Under 1.19 ⚠️)
