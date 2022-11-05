@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "DCD",
+    "RDR"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:deepslate_tiles"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "C" : {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "item": "tismatis-roads:crafting_machine",
+    "count": 1
+  }
+}
