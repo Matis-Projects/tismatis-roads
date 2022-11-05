@@ -23,10 +23,14 @@ import net.tismatis.tismatisroads.items.SignTool2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TismatisRoadsShared {
 
     public static String MODID = "tismatis-roads";
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+    public static List<Identifier> items = new ArrayList<>();
 
     /* CREATIVE TABS */
     public static final ItemGroup CT_BASE = FabricItemGroupBuilder.create(
@@ -193,6 +197,8 @@ public class TismatisRoadsShared {
     }
     public static void RegisterAItem(Item itm, String path)
     {
-        Registry.register(Registry.ITEM, new Identifier(MODID, path), itm);
+        Identifier identifier = new Identifier(MODID, path);
+        items.add(identifier);
+        Registry.register(Registry.ITEM, identifier, itm);
     }
 }
