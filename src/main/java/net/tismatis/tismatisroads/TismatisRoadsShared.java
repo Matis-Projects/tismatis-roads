@@ -4,15 +4,18 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.*;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blockentities.CraftingMachineBlock;
 import net.tismatis.tismatisroads.blockentities.CraftingMachineEntity;
+import net.tismatis.tismatisroads.blockentities.CraftingMachineScreenHandler;
 import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.PaintItem;
 import net.tismatis.tismatisroads.items.SignTool1;
@@ -48,6 +51,10 @@ public class TismatisRoadsShared {
             FabricBlockEntityTypeBuilder.create(CraftingMachineEntity::new, CRAFTING_MACHINE_BLOCK).build(),
             CRAFTING_MACHINE_BLOCK,
             "crafting_machine"
+    );
+    public static final ScreenHandlerType<CraftingMachineScreenHandler> CRAFTING_MACHINE_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(
+            new Identifier(MODID, "crafting_machine"),
+            CraftingMachineScreenHandler::new
     );
 
     public static void InitializeElementsShared()
@@ -180,7 +187,7 @@ public class TismatisRoadsShared {
 
         return Registry.register(
             Registry.BLOCK_ENTITY_TYPE,
-            new Identifier(MODID, "crafting_machine"),
+            new Identifier(MODID, path),
             blkEnt
         );
     }
