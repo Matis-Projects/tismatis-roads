@@ -3,11 +3,16 @@ package net.tismatis.tismatisroads;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.tismatis.tismatisroads.blockentities.CraftingMachineBlock;
+import net.tismatis.tismatisroads.blockentities.CraftingMachineEntity;
 import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.PaintItem;
 import net.tismatis.tismatisroads.items.SignTool1;
@@ -21,6 +26,10 @@ public class TismatisRoadsShared {
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     /* CREATIVE TABS */
+    public static final ItemGroup CT_BASE = FabricItemGroupBuilder.create(
+                    new Identifier(MODID, "creative-tab_base"))
+            .icon(() -> new ItemStack(Items.STONE))
+            .build();
     public static final ItemGroup CT_ROADS_MARKS = FabricItemGroupBuilder.create(
                     new Identifier(MODID, "creative-tab_roads-marks"))
             .icon(() -> new ItemStack(Items.STONE))
@@ -34,10 +43,17 @@ public class TismatisRoadsShared {
             .icon(() -> new ItemStack(Items.STONE))
             .build();
 
+    private static final CraftingMachineBlock CRAFTING_MACHINE_BLOCK = new CraftingMachineBlock(FabricBlockSettings.of(Material.STONE));
+    public static final BlockEntityType<?> CRAFTING_MACHINE_ENTITY = RegisterABlockEntity(
+            FabricBlockEntityTypeBuilder.create(CraftingMachineEntity::new, CRAFTING_MACHINE_BLOCK).build(),
+            CRAFTING_MACHINE_BLOCK,
+            "crafting_machine"
+    );
+
     public static void InitializeElementsShared()
     {
-
-
+        /* MACHINES */
+            RegisterWithClass("Machine","crafting_machine", CT_BASE, "CraftingMachine");
         /* BLOCKS WITH ITEMS */
             /* WHITE */
                 RegisterWithClass("Block","standard_line_white", CT_ROADS_MARKS, "LineBlock");
@@ -158,6 +174,17 @@ public class TismatisRoadsShared {
     {
         Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
         RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(it)), path);
+    }
+    public static BlockEntityType<?> RegisterABlockEntity(BlockEntityType<?> blkEnt, Block blk, String path)
+    {
+        Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
+        RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(CT_BASE)), path);
+
+        return Registry.register(
+            Registry.BLOCK_ENTITY_TYPE,
+            new Identifier(MODID, "crafting_machine"),
+            blkEnt
+        );
     }
     public static void RegisterAItem(Item itm, String path)
     {
