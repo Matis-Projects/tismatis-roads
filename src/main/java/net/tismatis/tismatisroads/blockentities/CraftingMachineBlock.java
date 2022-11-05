@@ -24,7 +24,7 @@ public class CraftingMachineBlock extends Block implements BlockEntityProvider {
 	@Nullable
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return (BlockState) this.getDefaultState().with(FACING, ctx.getPlayerFacing());
+		return (BlockState) this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
 	}
 
 	@Override

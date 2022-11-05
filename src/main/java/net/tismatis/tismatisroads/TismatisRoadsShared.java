@@ -52,8 +52,6 @@ public class TismatisRoadsShared {
 
     public static void InitializeElementsShared()
     {
-        /* MACHINES */
-            RegisterWithClass("Machine","crafting_machine", CT_BASE, "CraftingMachine");
         /* BLOCKS WITH ITEMS */
             /* WHITE */
                 RegisterWithClass("Block","standard_line_white", CT_ROADS_MARKS, "LineBlock");

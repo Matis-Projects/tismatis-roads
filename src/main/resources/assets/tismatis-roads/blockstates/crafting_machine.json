@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "tismatis-roads:block/crafting_machine" },
+		"facing=east": { "model": "tismatis-roads:block/crafting_machine", "y": 90 },
+		"facing=south": { "model": "tismatis-roads:block/crafting_machine", "y": 180 },
+		"facing=west": { "model": "tismatis-roads:block/crafting_machine", "y": 270 }
+	}
+}
