@@ -9,6 +9,7 @@ import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.*;
+import net.tismatis.tismatisroads.items.MsgTool;
 import net.tismatis.tismatisroads.items.PaintItem;
 import net.tismatis.tismatisroads.items.SignTool1;
 import net.tismatis.tismatisroads.items.SignTool2;
@@ -71,16 +72,21 @@ public class TismatisRoadsShared {
                 RegisterWithClass("Block","rail_crossing_pot", CT_TRAFFICS, "RailCrossingPot");
                 RegisterWithClass("Block","rail_crossing_gate", CT_TRAFFICS, "RailCrossingGate");
                 RegisterWithClass("Block","rail_crossing_gate_pot", CT_TRAFFICS, "RailCrossingGatePot");
-            /* Sign Block */
+            /* Sign Blocks*/
                 RegisterWithClass("Block", "stone_pole", CT_SIGNS, "SignPoleBlock");
                 RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock1");
                 RegisterWithClass("Block", "signblock_2", CT_SIGNS, "SignBlock2");
+                RegisterWithClass("Block", "msgboard", CT_SIGNS, "MessageBoard");
             /* Traffic Light */
                 /*RegisterWithClass("Block", "traffic_light_c1_little", CT_TRAFFICS, "TrafficLight");*/
         /* ITEMS ONLY */
             /* PAINT-TOOL */
                 RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintItem");
-            /* SIGN-TOOL */
+            /* SIGN-TOOL amd MSGBOARD-TOOL */
+                for(int i = 1; i < 4; ++i)
+                {
+                    RegisterWithClass("Item", "msgitem_" + i, CT_SIGNS, "MsgTool");
+                }
                 for(int i = 1; i < 29; ++i)
                 {
                     RegisterWithClass("Item", "signitem_1_" + i, CT_SIGNS, "SignTool1");
@@ -127,6 +133,8 @@ public class TismatisRoadsShared {
                 RegisterABlock(new SignPoleBlock(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "TrafficLight"){
                 RegisterABlock(new TrafficLight(FabricBlockSettings.of(Material.STONE)), path, it);
+            }else if(type == "MessageBoard"){
+                RegisterABlock(new MessageBoard(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "BaseRotateBlock"){
                 RegisterABlock(new BaseRotateBlock(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "Block"){
@@ -144,6 +152,9 @@ public class TismatisRoadsShared {
             }else if(type == "SignTool2")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool2(new FabricItemSettings().group(it)));
+            }else if(type == "MsgTool")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new MsgTool(new FabricItemSettings().group(it)));
             }else if(type == "Items")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new Item(new FabricItemSettings().group(it)));

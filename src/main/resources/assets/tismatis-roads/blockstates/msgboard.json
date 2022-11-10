@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north,baseid=0": {"model": "tismatis-roads:block/msgboard"},
+    "facing=east,baseid=0": {"model": "tismatis-roads:block/msgboard", "y": 90},
+    "facing=south,baseid=0": {"model": "tismatis-roads:block/msgboard", "y": 180},
+    "facing=west,baseid=0": {"model": "tismatis-roads:block/msgboard", "y": 270},
+    "facing=north,baseid=1": {"model": "tismatis-roads:block/msgboard_1"},
+    "facing=east,baseid=1": {"model": "tismatis-roads:block/msgboard_1", "y": 90},
+    "facing=south,baseid=1": {"model": "tismatis-roads:block/msgboard_1", "y": 180},
+    "facing=west,baseid=1": {"model": "tismatis-roads:block/msgboard_1", "y": 270},
+    "facing=north,baseid=2": {"model": "tismatis-roads:block/msgboard_2"},
+    "facing=east,baseid=2": {"model": "tismatis-roads:block/msgboard_2", "y": 90},
+    "facing=south,baseid=2": {"model": "tismatis-roads:block/msgboard_2", "y": 180},
+    "facing=west,baseid=2": {"model": "tismatis-roads:block/msgboard_2", "y": 270},
+    "facing=north,baseid=3": {"model": "tismatis-roads:block/msgboard_3"},
+    "facing=east,baseid=3": {"model": "tismatis-roads:block/msgboard_3", "y": 90},
+    "facing=south,baseid=3": {"model": "tismatis-roads:block/msgboard_3", "y": 180},
+    "facing=west,baseid=3": {"model": "tismatis-roads:block/msgboard_3", "y": 270}
+  }
+}
