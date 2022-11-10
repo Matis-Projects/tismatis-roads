@@ -59,7 +59,6 @@ public class CraftingMachineScreen extends HandledScreen<CraftingMachineScreenHa
 		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
 		int i = this.getSearchBoxX() + 3;
-		super.renderBackground(matrices);
 		RenderSystem.setShaderTexture(0, RECIPES_TEXTURE);
 		this.drawTexture(matrices, i, 64, 1, 1, 236, 8);
 		int j = this.getRowCount();
@@ -95,10 +94,11 @@ public class CraftingMachineScreen extends HandledScreen<CraftingMachineScreenHa
 		titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
 
 		if (this.initialized) {
-			this.itemListWidget.updateSize(220, this.height, 88, this.getItemListBottom());
+			this.itemListWidget.updateSize(196-28, this.height, 88, this.getItemListBottom());
 		} else {
-			this.itemListWidget = new ItemListWidget(this.client, 220, this.height, 88, this.getItemListBottom(), 36);
+			this.itemListWidget = new ItemListWidget(this.client, 196-28, this.height, 88, this.getItemListBottom(), 36);
 		}
+		this.itemListWidget.setLeftPos(28*2);
 
 		String string = this.searchBox != null ? this.searchBox.getText() : "";
 		this.searchBox = new TextFieldWidget(this.textRenderer, this.getSearchBoxX() + 28, 78, 196, 16, SEARCH_TEXT) {

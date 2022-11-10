@@ -7,13 +7,10 @@ import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.ColorHelper;
-import net.tismatis.tismatisroads.blockentities.CraftingMachineScreen;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -26,19 +23,19 @@ public class ItemListEntry extends ElementListWidget.Entry<ItemListEntry> {
 	public static final int DARK_GRAY_COLOR;
 	public static final int WHITE_COLOR;
 	public static final int LIGHT_GRAY_COLOR;
-	@Nullable
-	private ButtonWidget useButton;
+	private final ButtonWidget useButton;
 
 	public ItemListEntry(MinecraftClient client, ItemStack itemStack) {
 		this.client = client;
 		this.itemStack = itemStack;
 
-		this.useButton = new TexturedButtonWidget(0, 0, 20, 20, 0, 38, 20, CraftingMachineScreen.RECIPES_TEXTURE, 256, 256, (button) -> {
+		this.useButton = new ButtonWidget(0, 0, 10, 6, Text.of("o"), (button) -> {
 			System.out.println("YAAA");
 		}, new ButtonWidget.TooltipSupplier() {
 			public void onTooltip(ButtonWidget buttonWidget, MatrixStack matrixStack, int i, int j) {}
 			public void supply(Consumer<Text> consumer) {}
-		}, Text.of(""));
+		});
+		this.useButton.visible = true;
 	}
 
 	public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
@@ -51,6 +48,9 @@ public class ItemListEntry extends ElementListWidget.Entry<ItemListEntry> {
 
 		this.client.getItemRenderer().renderGuiItemIcon(this.itemStack, i+4, j+4);
 		this.client.textRenderer.draw(matrices, this.itemStack.getName(), (float)k, (float)l, WHITE_COLOR);
+
+		this.useButton.x = x + entryWidth;
+		this.useButton.y = y + 3;
 		this.useButton.render(matrices, mouseX, mouseY, tickDelta);
 	}
 
