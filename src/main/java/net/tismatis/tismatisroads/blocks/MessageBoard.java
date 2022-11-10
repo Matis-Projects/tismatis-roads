@@ -2,6 +2,8 @@ package net.tismatis.tismatisroads.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -10,10 +12,11 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-public class MessageBoard extends Block{
+public class MessageBoard extends Block {
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static IntProperty BASE_ID = IntProperty.of("baseid", 0, 3);
@@ -43,4 +46,11 @@ public class MessageBoard extends Block{
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, BASE_ID);
     }
+
+//    @Nullable
+//    @Override
+//    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+//        return new MessageBoardBlockEntity(pos, state);
+//    }
+
 }

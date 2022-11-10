@@ -3,16 +3,17 @@ package net.tismatis.tismatisroads;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.*;
-import net.tismatis.tismatisroads.items.MsgTool;
-import net.tismatis.tismatisroads.items.PaintItem;
-import net.tismatis.tismatisroads.items.SignTool1;
-import net.tismatis.tismatisroads.items.SignTool2;
+import net.tismatis.tismatisroads.items.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,8 +81,9 @@ public class TismatisRoadsShared {
             /* Traffic Light */
                 /*RegisterWithClass("Block", "traffic_light_c1_little", CT_TRAFFICS, "TrafficLight");*/
         /* ITEMS ONLY */
-            /* PAINT-TOOL */
+            /* TOOLS */
                 RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintItem");
+                RegisterWithClass("Item", "msg_edit_tool", CT_SIGNS, "MsgEditItem");
             /* SIGN-TOOL amd MSGBOARD-TOOL */
                 for(int i = 1; i < 4; ++i)
                 {
@@ -146,6 +148,9 @@ public class TismatisRoadsShared {
             if(type == "PaintItem")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new PaintItem(new FabricItemSettings().group(it)));
+            }else if(type == "MsgEditItem")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new MessageBoardEditItem(new FabricItemSettings().group(it)));
             }else if(type == "SignTool1")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool1(new FabricItemSettings().group(it)));
