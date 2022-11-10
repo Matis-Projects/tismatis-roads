@@ -1,8 +1,6 @@
 package net.tismatis.tismatisroads;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
-import net.tismatis.tismatisroads.blockentities.CraftingMachineScreen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +14,6 @@ public class TismatisRoadsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         InitializeElementsShared();
-
-        ScreenRegistry.register(TismatisRoadsShared.CRAFTING_MACHINE_SCREEN_HANDLER, CraftingMachineScreen::new);
 
         LOGGER.info("[TismatisRoads-FABRIC] The client part has loaded!");
     }
