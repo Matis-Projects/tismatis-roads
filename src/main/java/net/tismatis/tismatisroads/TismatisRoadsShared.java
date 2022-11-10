@@ -3,8 +3,11 @@ package net.tismatis.tismatisroads;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -12,6 +15,7 @@ import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.PaintItem;
 import net.tismatis.tismatisroads.items.SignTool1;
 import net.tismatis.tismatisroads.items.SignTool2;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -99,12 +103,18 @@ public class TismatisRoadsShared {
     {
         if(what == "Block")
         {
-            RegisterWithClass(what, path, it, "Block");
+            RegisterWithClass(what, path, it, "Block", null);
         }else{
-            RegisterWithClass(what, path, it, "Items");
+            RegisterWithClass(what, path, it, "Items", null);
         }
     }
-    public static void RegisterWithClass(String what, String path, ItemGroup it,String type)
+
+    public static void RegisterWithClass(String what, String path, ItemGroup it, String type)
+    {
+        RegisterWithClass(what, path, it, type, null);
+    }
+
+    public static void RegisterWithClass(String what, String path, ItemGroup it,String type, FabricBlockEntityTypeBuilder.Factory<? extends BlockEntity> factory)
     {
         if(what == "Block")
         {
@@ -129,10 +139,14 @@ public class TismatisRoadsShared {
                 RegisterABlock(new TrafficLight(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "BaseRotateBlock"){
                 RegisterABlock(new BaseRotateBlock(FabricBlockSettings.of(Material.STONE)), path, it);
-            }else if(type == "Block"){
+            }else if(type == "Block") {
                 RegisterABlock(new Block(FabricBlockSettings.of(Material.STONE)), path, it);
             }else{
                 LOGGER.error("Can't handle this object: name: '" + path + "', type: '" + what + "' !");
+            }
+        }else if(what == "BlockEntity"){
+            if(type == "SignWriteable") {
+                RegisterABlockEntity(new Block(FabricBlockSettings.of(Material.STONE)), path, it, factory);
             }
         }else{
             if(type == "PaintItem")
@@ -159,6 +173,15 @@ public class TismatisRoadsShared {
         Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
         RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(it)), path);
     }
+
+    @Nullable
+    public static BlockEntityType RegisterABlockEntity(Block blk, String path, ItemGroup it, FabricBlockEntityTypeBuilder.Factory<? extends BlockEntity> factory )
+    {
+        Block NewBLK = Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
+        RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(it)), path);
+        return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MODID, path), FabricBlockEntityTypeBuilder.create(factory, NewBLK).build());
+    }
+
     public static void RegisterAItem(Item itm, String path)
     {
         Registry.register(Registry.ITEM, new Identifier(MODID, path), itm);
