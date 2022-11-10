@@ -5,17 +5,18 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.*;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class TismatisRoadsShared {
 
@@ -35,6 +36,8 @@ public class TismatisRoadsShared {
                     new Identifier(MODID, "creative-tab_signs"))
             .icon(() -> new ItemStack(Items.STONE))
             .build();
+
+    public static BlockEntityType<?> MESSAGE_BOARD_BLOCK_ENTITY;
 
     public static void InitializeElementsShared()
     {
@@ -77,7 +80,7 @@ public class TismatisRoadsShared {
                 RegisterWithClass("Block", "stone_pole", CT_SIGNS, "SignPoleBlock");
                 RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock1");
                 RegisterWithClass("Block", "signblock_2", CT_SIGNS, "SignBlock2");
-                RegisterWithClass("Block", "msgboard", CT_SIGNS, "MessageBoard");
+                RegisterWithClass("BlockEntity", "msgboard", CT_SIGNS, "MessageBoard", MessageBoardBlockEntity::new);
             /* Traffic Light */
                 /*RegisterWithClass("Block", "traffic_light_c1_little", CT_TRAFFICS, "TrafficLight");*/
         /* ITEMS ONLY */
@@ -107,12 +110,18 @@ public class TismatisRoadsShared {
     {
         if(what == "Block")
         {
-            RegisterWithClass(what, path, it, "Block");
+            RegisterWithClass(what, path, it, "Block", null);
         }else{
-            RegisterWithClass(what, path, it, "Items");
+            RegisterWithClass(what, path, it, "Items", null);
         }
     }
-    public static void RegisterWithClass(String what, String path, ItemGroup it,String type)
+
+    public static void RegisterWithClass(String what, String path, ItemGroup it, String type)
+    {
+        RegisterWithClass(what, path, it, type, null);
+    }
+
+    public static void RegisterWithClass(String what, String path, ItemGroup it,String type, FabricBlockEntityTypeBuilder.Factory<? extends BlockEntity> factory)
     {
         if(what == "Block")
         {
@@ -135,14 +144,18 @@ public class TismatisRoadsShared {
                 RegisterABlock(new SignPoleBlock(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "TrafficLight"){
                 RegisterABlock(new TrafficLight(FabricBlockSettings.of(Material.STONE)), path, it);
-            }else if(type == "MessageBoard"){
-                RegisterABlock(new MessageBoard(FabricBlockSettings.of(Material.STONE)), path, it);
             }else if(type == "BaseRotateBlock"){
                 RegisterABlock(new BaseRotateBlock(FabricBlockSettings.of(Material.STONE)), path, it);
-            }else if(type == "Block"){
+            }else if(type == "Block") {
                 RegisterABlock(new Block(FabricBlockSettings.of(Material.STONE)), path, it);
             }else{
                 LOGGER.error("Can't handle this object: name: '" + path + "', type: '" + what + "' !");
+            }
+        }else if(what == "BlockEntity"){
+            if(type == "SignWriteable") {
+                RegisterABlockEntity(new Block(FabricBlockSettings.of(Material.STONE)), path, it, factory);
+            }else if(type == "MessageBoard"){
+                MESSAGE_BOARD_BLOCK_ENTITY = RegisterABlockEntity(new MessageBoard(FabricBlockSettings.of(Material.STONE)), path, it, factory);
             }
         }else{
             if(type == "PaintItem")
@@ -175,6 +188,15 @@ public class TismatisRoadsShared {
         Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
         RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(it)), path);
     }
+
+    @Nullable
+    public static BlockEntityType<?> RegisterABlockEntity(Block blk, String path, ItemGroup it, FabricBlockEntityTypeBuilder.Factory<? extends BlockEntity> factory )
+    {
+        Block NewBLK = Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
+        RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(it)), path);
+        return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MODID, path), FabricBlockEntityTypeBuilder.create(factory, NewBLK).build());
+    }
+
     public static void RegisterAItem(Item itm, String path)
     {
         Registry.register(Registry.ITEM, new Identifier(MODID, path), itm);
