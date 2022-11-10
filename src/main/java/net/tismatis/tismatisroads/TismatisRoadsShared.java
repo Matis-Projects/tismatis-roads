@@ -37,7 +37,7 @@ public class TismatisRoadsShared {
             .icon(() -> new ItemStack(Items.STONE))
             .build();
 
-    public static BlockEntityType<?> MESSAGE_BOARD_BLOCK_ENTITY;
+    public static BlockEntityType<MessageBoardBlockEntity> MESSAGE_BOARD_BLOCK_ENTITY;
 
     public static void InitializeElementsShared()
     {
@@ -155,7 +155,7 @@ public class TismatisRoadsShared {
             if(type == "SignWriteable") {
                 RegisterABlockEntity(new Block(FabricBlockSettings.of(Material.STONE)), path, it, factory);
             }else if(type == "MessageBoard"){
-                MESSAGE_BOARD_BLOCK_ENTITY = RegisterABlockEntity(new MessageBoard(FabricBlockSettings.of(Material.STONE)), path, it, factory);
+                MESSAGE_BOARD_BLOCK_ENTITY = (BlockEntityType<MessageBoardBlockEntity>) RegisterABlockEntity(new MessageBoard(FabricBlockSettings.of(Material.STONE)), path, it, factory);
             }
         }else{
             if(type == "PaintItem")
@@ -172,7 +172,7 @@ public class TismatisRoadsShared {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool2(new FabricItemSettings().group(it)));
             }else if(type == "MsgTool")
             {
-                Registry.register(Registry.ITEM, new Identifier(MODID, path), new MsgTool(new FabricItemSettings().group(it)));
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new MessageBoardTool(new FabricItemSettings().group(it)));
             }else if(type == "Items")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new Item(new FabricItemSettings().group(it)));

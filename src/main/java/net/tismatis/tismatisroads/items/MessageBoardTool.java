@@ -9,9 +9,9 @@ import net.tismatis.tismatisroads.blocks.MessageBoard;
 
 import static net.tismatis.tismatisroads.blocks.MessageBoard.BASE_ID;
 
-public class MsgTool extends Item {
+public class MessageBoardTool extends Item {
 
-    public MsgTool(Settings settings) {
+    public MessageBoardTool(Settings settings) {
         super(settings);
     }
 

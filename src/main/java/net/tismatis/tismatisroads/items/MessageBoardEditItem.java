@@ -1,14 +1,11 @@
 package net.tismatis.tismatisroads.items;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
-import net.tismatis.tismatisroads.blocks.MessageBoard;
-
-import static net.tismatis.tismatisroads.blocks.LineBlockSpecial.REVERSE;
+import net.tismatis.tismatisroads.blocks.MessageBoardBlockEntity;
 
 public class MessageBoardEditItem extends Item {
 
@@ -18,9 +15,9 @@ public class MessageBoardEditItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        BlockState bs = context.getWorld().getBlockState(context.getBlockPos());
+        BlockEntity entity = context.getWorld().getBlockEntity(context.getBlockPos());
         World world = context.getWorld();
-        if(!world.isClient && (bs.getBlock() instanceof MessageBoard))
+        if(!world.isClient && (entity instanceof MessageBoardBlockEntity))
         {
             System.out.println("Editing Message board");
         }
