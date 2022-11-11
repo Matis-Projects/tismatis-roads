@@ -3,20 +3,16 @@ package net.tismatis.tismatisroads.client;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.WallSignBlock;
-import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.OrderedText;
-import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.*;
 import net.tismatis.tismatisroads.blocks.MessageBoard;
@@ -56,39 +52,37 @@ public class MessageBoardRenderer implements BlockEntityRenderer<MessageBoardBlo
 
 		int renderColor;
 		boolean shouldRender;
-		int l;
+		int l = 15728880;
 		if (entity.isGlowingText()) {
 			renderColor = entity.getTextColor().getSignColor();
 			shouldRender = shouldRender(entity, renderColor);
-			l = 15728880;
 		} else {
 			renderColor = color;
 			shouldRender = false;
-			l = light;
 		}
 
 		for(int row = 0; row < 3; ++row) {
 			OrderedText orderedText = orderedTexts[row];
-			float y = (float)(-this.textRenderer.getWidth(orderedText) / 2);
+			float x = (float)(-this.textRenderer.getWidth(orderedText) / 2);
 			if (shouldRender) {
-				this.textRenderer.drawWithOutline(orderedText, y, (float)(row * 10 - 10), renderColor, color, matrices.peek().getPositionMatrix(), vertexConsumers, l);
+				this.textRenderer.drawWithOutline(orderedText, x, (float)(row * 10 - 10), renderColor, color, matrices.peek().getPositionMatrix(), vertexConsumers, l);
 			} else {
-				this.textRenderer.draw(orderedText, y, (float)(row * 10 - 10), renderColor, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, l);
+				this.textRenderer.draw(orderedText, x, (float)(row * 10 - 10), renderColor, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, l);
 			}
 		}
 	}
 
 	private static int getColor(MessageBoardBlockEntity sign) {
-		int i = sign.getTextColor().getSignColor();
+		int color = sign.getTextColor().getSignColor();
 		double d = 0.4D;
-		int j = (int)((double) NativeImage.getRed(i) * 0.4D);
-		int k = (int)((double)NativeImage.getGreen(i) * 0.4D);
-		int l = (int)((double)NativeImage.getBlue(i) * 0.4D);
-		return i == DyeColor.BLACK.getSignColor() && sign.isGlowingText() ? -988212 : NativeImage.packColor(0, l, k, j);
+		int r = (int)((double)NativeImage.getRed(color) * d);
+		int g = (int)((double)NativeImage.getGreen(color) * d);
+		int b = (int)((double)NativeImage.getBlue(color) * d);
+		return color == DyeColor.WHITE.getSignColor() && sign.isGlowingText() ? -988212 : NativeImage.packColor(0, b, g, r);
 	}
 
 	private static boolean shouldRender(MessageBoardBlockEntity sign, int signColor) {
-		if (signColor == DyeColor.BLACK.getSignColor()) {
+		if (signColor == DyeColor.WHITE.getSignColor()) {
 			return true;
 		} else {
 			MinecraftClient minecraftClient = MinecraftClient.getInstance();
