@@ -38,17 +38,18 @@ public class MessageBoardRenderer implements BlockEntityRenderer<MessageBoardBlo
 		BlockState blockState = entity.getCachedState();
 
 		matrices.translate(0.5D, 0.5D, 0.5D);
+		double signWidth = 1;
 		float rotation = -blockState.get(MessageBoard.FACING).asRotation();
 		matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(rotation));
-		matrices.translate(0.0D, -0.3125D, -0.3375D);
+		matrices.translate(0.0D, (-0.3125D)+0.10, (-0.3375D)-((signWidth/10)-0.02));
 
-		float fontSize = 0.010416667F;
+		float fontSize = 0.010416667F*3;
 		matrices.translate(0.0D, 0.3333333432674408D, 0.046666666865348816D);
 		matrices.scale(fontSize, -fontSize, fontSize);
 
 		OrderedText[] orderedTexts = entity.updateSign(MinecraftClient.getInstance().shouldFilterText(), (text) -> {
 			List<OrderedText> list = this.textRenderer.wrapLines(text, 90);
-			return list.isEmpty() ? OrderedText.EMPTY : (OrderedText)list.get(0);
+			return list.isEmpty() ? OrderedText.EMPTY : list.get(0);
 		});
 
 		int color = getColor(entity);
@@ -66,13 +67,13 @@ public class MessageBoardRenderer implements BlockEntityRenderer<MessageBoardBlo
 			l = light;
 		}
 
-		for(int row = 0; row < 4; ++row) {
+		for(int row = 0; row < 3; ++row) {
 			OrderedText orderedText = orderedTexts[row];
 			float y = (float)(-this.textRenderer.getWidth(orderedText) / 2);
 			if (shouldRender) {
-				this.textRenderer.drawWithOutline(orderedText, y, (float)(row * 10 - 20), renderColor, color, matrices.peek().getPositionMatrix(), vertexConsumers, l);
+				this.textRenderer.drawWithOutline(orderedText, y, (float)(row * 10 - 10), renderColor, color, matrices.peek().getPositionMatrix(), vertexConsumers, l);
 			} else {
-				this.textRenderer.draw(orderedText, y, (float)(row * 10 - 20), renderColor, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, l);
+				this.textRenderer.draw(orderedText, y, (float)(row * 10 - 10), renderColor, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, l);
 			}
 		}
 	}

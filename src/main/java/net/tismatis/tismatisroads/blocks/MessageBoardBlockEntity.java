@@ -25,12 +25,11 @@ public class MessageBoardBlockEntity extends BlockEntity {
 	public MessageBoardBlockEntity(BlockPos pos, BlockState state) {
 		super(MESSAGE_BOARD_BLOCK_ENTITY, pos, state);
 		this.texts = new Text[]{
-				Text.of("????"),
-				Text.of("????"),
-				Text.of("????"),
-				Text.of("????")
+				Text.of("?????"),
+				Text.of("?????"),
+				Text.of("?????")
 		};
-		this.filteredTexts = new Text[]{ScreenTexts.EMPTY, ScreenTexts.EMPTY, ScreenTexts.EMPTY, ScreenTexts.EMPTY};
+		this.filteredTexts = new Text[]{ScreenTexts.EMPTY, ScreenTexts.EMPTY, ScreenTexts.EMPTY};
 	}
 
 	@Override
@@ -56,8 +55,8 @@ public class MessageBoardBlockEntity extends BlockEntity {
 			this.filterText = filterText;
 			this.textsBeingEdited = new OrderedText[4];
 
-			for(int i = 0; i < 4; ++i) {
-				this.textsBeingEdited[i] = (OrderedText)textOrderingFunction.apply(this.getTextOnRow(i, filterText));
+			for(int i = 0; i < 3; ++i) {
+				this.textsBeingEdited[i] = textOrderingFunction.apply(this.getTextOnRow(i, filterText));
 			}
 		}
 
