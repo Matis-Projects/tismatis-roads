@@ -11,6 +11,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
 import java.util.function.Function;
 
 import static net.tismatis.tismatisroads.TismatisRoadsShared.MESSAGE_BOARD_BLOCK_ENTITY;
@@ -139,6 +140,8 @@ public class MessageBoardBlockEntity extends BlockEntity {
 
 	private void updateListeners() {
 		this.markDirty();
-		this.world.updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), 3);
+		if (this.world != null) {
+			this.world.updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), 3);
+		}
 	}
 }
