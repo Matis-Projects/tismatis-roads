@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
 import net.minecraft.screen.ScreenTexts;
+import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.SignType;
@@ -22,6 +23,7 @@ import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.TismatisRoadsShared;
 import net.tismatis.tismatisroads.blocks.MessageBoard;
 import net.tismatis.tismatisroads.blocks.MessageBoardBlockEntity;
+import net.tismatis.tismatisroads.client.MessageBoardRenderer;
 
 import java.util.stream.IntStream;
 
@@ -57,7 +59,7 @@ public class MessageBoardEditScreen extends Screen {
 			this.selectionManager = new SelectionManager(() -> this.text[this.currentRow], (text) -> {
 				this.text[this.currentRow] = text;
 //				this.sign.setTextOnRow(this.currentRow, Text.literal(text));
-			}, SelectionManager.makeClipboardGetter(this.client), SelectionManager.makeClipboardSetter(this.client), (text) -> this.client.textRenderer.getWidth(text) <= 90);
+			}, SelectionManager.makeClipboardGetter(this.client), SelectionManager.makeClipboardSetter(this.client), (text) -> this.client.textRenderer.getWidth(text) <= 30);
 		}
 	}
 
@@ -103,13 +105,15 @@ public class MessageBoardEditScreen extends Screen {
 	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		if (keyCode == 265) {
-			this.currentRow = this.currentRow - 1 & 3;
+			this.currentRow = this.currentRow - 1;
+			if (this.currentRow < 0) {this.currentRow = 0;}
 			this.selectionManager.putCursorAtEnd();
 			return true;
 		} else if (keyCode != 264 && keyCode != 257 && keyCode != 335) {
 			return this.selectionManager.handleSpecialKey(keyCode) || super.keyPressed(keyCode, scanCode, modifiers);
 		} else {
-			this.currentRow = this.currentRow + 1 & 3;
+			this.currentRow = this.currentRow + 1;
+			if (this.currentRow > 2) {this.currentRow = 2;}
 			this.selectionManager.putCursorAtEnd();
 			return true;
 		}
@@ -124,11 +128,21 @@ public class MessageBoardEditScreen extends Screen {
 			matrices.push();
 
 
-			client.getItemRenderer().renderInGui(
-					Registry.ITEM.get(new Identifier(TismatisRoadsShared.MODID, "msgboard")).getDefaultStack(),
-					this.width / 2,
-					this.height / 2
-			);
+			int color = MessageBoardRenderer.getColor(sign);
+
+			int renderColor;
+			if (sign.isGlowingText()) {
+				renderColor = sign.getTextColor().getSignColor();
+			} else {
+				renderColor = color;
+			}
+
+			float y = this.height / 2f;
+			for(int row = 0; row < 3; ++row) {
+				OrderedText orderedText = Text.of(text[row]).asOrderedText();
+				float x = (float)(-this.textRenderer.getWidth(orderedText) / 2) + (this.width/2f);
+				this.client.textRenderer.draw(matrices, orderedText, x, (float)(row * 10 - 10)+y, renderColor);
+			}
 
 			DiffuseLighting.enableGuiDepthLighting();
 			super.render(matrices, mouseX, mouseY, delta);

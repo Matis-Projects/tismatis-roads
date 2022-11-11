@@ -51,20 +51,20 @@ public class MessageBoardRenderer implements BlockEntityRenderer<MessageBoardBlo
 		int color = getColor(entity);
 
 		int renderColor;
-		boolean shouldRender;
+		boolean shouldRenderShadow;
 		int l = 15728880;
 		if (entity.isGlowingText()) {
 			renderColor = entity.getTextColor().getSignColor();
-			shouldRender = shouldRender(entity, renderColor);
+			shouldRenderShadow = shouldRender(entity, renderColor);
 		} else {
 			renderColor = color;
-			shouldRender = false;
+			shouldRenderShadow = false;
 		}
 
 		for(int row = 0; row < 3; ++row) {
 			OrderedText orderedText = orderedTexts[row];
 			float x = (float)(-this.textRenderer.getWidth(orderedText) / 2);
-			if (shouldRender) {
+			if (shouldRenderShadow) {
 				this.textRenderer.drawWithOutline(orderedText, x, (float)(row * 10 - 10), renderColor, color, matrices.peek().getPositionMatrix(), vertexConsumers, l);
 			} else {
 				this.textRenderer.draw(orderedText, x, (float)(row * 10 - 10), renderColor, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, l);
@@ -72,7 +72,7 @@ public class MessageBoardRenderer implements BlockEntityRenderer<MessageBoardBlo
 		}
 	}
 
-	private static int getColor(MessageBoardBlockEntity sign) {
+	public static int getColor(MessageBoardBlockEntity sign) {
 		int color = sign.getTextColor().getSignColor();
 		double d = 0.4D;
 		int r = (int)((double)NativeImage.getRed(color) * d);
@@ -81,7 +81,7 @@ public class MessageBoardRenderer implements BlockEntityRenderer<MessageBoardBlo
 		return color == DyeColor.WHITE.getSignColor() && sign.isGlowingText() ? -988212 : NativeImage.packColor(0, b, g, r);
 	}
 
-	private static boolean shouldRender(MessageBoardBlockEntity sign, int signColor) {
+	public static boolean shouldRender(MessageBoardBlockEntity sign, int signColor) {
 		if (signColor == DyeColor.WHITE.getSignColor()) {
 			return true;
 		} else {
