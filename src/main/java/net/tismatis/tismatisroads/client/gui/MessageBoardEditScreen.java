@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.render.DiffuseLighting;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
 import net.minecraft.client.util.SelectionManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -19,6 +20,7 @@ import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.SignType;
+import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.TismatisRoadsShared;
 import net.tismatis.tismatisroads.blocks.MessageBoard;
@@ -127,22 +129,30 @@ public class MessageBoardEditScreen extends Screen {
 			drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 40, 16777215);
 			matrices.push();
 
+			boolean canFlash = this.ticksSinceOpened / 6 % 2 == 0;
 
-			int color = MessageBoardRenderer.getColor(sign);
+			int renderColor = this.sign.getTextColor().getSignColor();
+			int start = this.selectionManager.getSelectionStart();
 
-			int renderColor;
-			if (sign.isGlowingText()) {
-				renderColor = sign.getTextColor().getSignColor();
-			} else {
-				renderColor = color;
+			for(int m = 0; m < this.text.length; ++m) {
+				String string = this.text[m];
+				if (string != null) {
+					if (this.textRenderer.isRightToLeft()) {
+						string = this.textRenderer.mirror(string);
+					}
+
+					float y = (this.height / 4f + 120)-70;
+					float x = (float)(-this.textRenderer.getWidth(string) / 2) + (this.width/2f);
+					this.client.textRenderer.draw(matrices, string, x, (float)(m * 10 - 10)+y, renderColor);
+
+					if (m == this.currentRow && canFlash) {
+						float sw = this.textRenderer.getWidth(string);
+						float cx = ((start*(sw/2f))+x)/(this.width/2f);
+						this.client.textRenderer.draw(matrices, "_", cx, (float)(m * 10 - 10)+y, renderColor);
+					}
+				}
 			}
 
-			float y = this.height / 2f;
-			for(int row = 0; row < 3; ++row) {
-				OrderedText orderedText = Text.of(text[row]).asOrderedText();
-				float x = (float)(-this.textRenderer.getWidth(orderedText) / 2) + (this.width/2f);
-				this.client.textRenderer.draw(matrices, orderedText, x, (float)(row * 10 - 10)+y, renderColor);
-			}
 
 			DiffuseLighting.enableGuiDepthLighting();
 			super.render(matrices, mouseX, mouseY, delta);
