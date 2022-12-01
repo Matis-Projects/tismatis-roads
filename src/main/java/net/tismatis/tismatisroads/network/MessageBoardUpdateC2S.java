@@ -12,8 +12,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.tismatis.tismatisroads.blocks.MessageBoardBlockEntity;
 
-import java.util.Arrays;
-
 public class MessageBoardUpdateC2S implements ServerPlayNetworking.PlayChannelHandler {
 	@Override
 	public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {

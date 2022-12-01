@@ -32,7 +32,7 @@ public class MessageBoard extends BlockWithEntity {
     public static IntProperty BASE_ID = IntProperty.of("baseid", 0, 3);
 
     public MessageBoard(Settings settings) {
-        super(settings);
+        super(settings.nonOpaque());
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(BASE_ID, 0));
     }
 
