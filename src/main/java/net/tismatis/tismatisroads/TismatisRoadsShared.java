@@ -2,6 +2,7 @@ package net.tismatis.tismatisroads;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
@@ -12,12 +13,13 @@ import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.*;
-import net.tismatis.tismatisroads.items.PaintItem;
-import net.tismatis.tismatisroads.items.SignTool1;
-import net.tismatis.tismatisroads.items.SignTool2;
+import net.tismatis.tismatisroads.items.*;
+import net.tismatis.tismatisroads.network.MessageBoardUpdateC2S;
+import net.tismatis.tismatisroads.network.NetworkConstants;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class TismatisRoadsShared {
 
@@ -37,6 +39,8 @@ public class TismatisRoadsShared {
                     new Identifier(MODID, "creative-tab_signs"))
             .icon(() -> new ItemStack(Items.STONE))
             .build();
+
+    public static BlockEntityType<MessageBoardBlockEntity> MESSAGE_BOARD_BLOCK_ENTITY;
 
     public static void InitializeElementsShared()
     {
@@ -75,16 +79,22 @@ public class TismatisRoadsShared {
                 RegisterWithClass("Block","rail_crossing_pot", CT_TRAFFICS, "RailCrossingPot");
                 RegisterWithClass("Block","rail_crossing_gate", CT_TRAFFICS, "RailCrossingGate");
                 RegisterWithClass("Block","rail_crossing_gate_pot", CT_TRAFFICS, "RailCrossingGatePot");
-            /* Sign Block */
+            /* Sign Blocks*/
                 RegisterWithClass("Block", "stone_pole", CT_SIGNS, "SignPoleBlock");
                 RegisterWithClass("Block", "signblock_1", CT_SIGNS, "SignBlock1");
                 RegisterWithClass("Block", "signblock_2", CT_SIGNS, "SignBlock2");
+                RegisterWithClass("BlockEntity", "msgboard", CT_SIGNS, "MessageBoard", MessageBoardBlockEntity::new);
             /* Traffic Light */
                 /*RegisterWithClass("Block", "traffic_light_c1_little", CT_TRAFFICS, "TrafficLight");*/
         /* ITEMS ONLY */
-            /* PAINT-TOOL */
+            /* TOOLS */
                 RegisterWithClass("Item", "paint_tool", CT_ROADS_MARKS, "PaintItem");
-            /* SIGN-TOOL */
+                RegisterWithClass("Item", "msg_edit_tool", CT_SIGNS, "MsgEditItem");
+            /* SIGN-TOOL amd MSGBOARD-TOOL */
+                for(int i = 1; i < 4; ++i)
+                {
+                    RegisterWithClass("Item", "msgitem_" + i, CT_SIGNS, "MsgTool");
+                }
                 for(int i = 1; i < 29; ++i)
                 {
                     RegisterWithClass("Item", "signitem_1_" + i, CT_SIGNS, "SignTool1");
@@ -95,6 +105,10 @@ public class TismatisRoadsShared {
                 }
         /* CREATIVE TAB */
 
+        ServerPlayNetworking.registerGlobalReceiver(NetworkConstants.UPDATE_MESSAGE_BOARD_C2S, (server, player, handler, buf, responseSender) -> {
+            MessageBoardUpdateC2S packet = new MessageBoardUpdateC2S();
+            packet.receive(server, player, handler, buf, responseSender);
+        });
 
         LOGGER.info("[TismatisRoads-FABRIC] The shared part has loaded!");
     }
@@ -147,17 +161,25 @@ public class TismatisRoadsShared {
         }else if(what == "BlockEntity"){
             if(type == "SignWriteable") {
                 RegisterABlockEntity(new Block(FabricBlockSettings.of(Material.STONE)), path, it, factory);
+            }else if(type == "MessageBoard"){
+                MESSAGE_BOARD_BLOCK_ENTITY = (BlockEntityType<MessageBoardBlockEntity>) RegisterABlockEntity(new MessageBoard(FabricBlockSettings.of(Material.STONE)), path, it, factory);
             }
         }else{
             if(type == "PaintItem")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new PaintItem(new FabricItemSettings().group(it)));
+            }else if(type == "MsgEditItem")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new MessageBoardEditItem(new FabricItemSettings().group(it)));
             }else if(type == "SignTool1")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool1(new FabricItemSettings().group(it)));
             }else if(type == "SignTool2")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new SignTool2(new FabricItemSettings().group(it)));
+            }else if(type == "MsgTool")
+            {
+                Registry.register(Registry.ITEM, new Identifier(MODID, path), new MessageBoardTool(new FabricItemSettings().group(it)));
             }else if(type == "Items")
             {
                 Registry.register(Registry.ITEM, new Identifier(MODID, path), new Item(new FabricItemSettings().group(it)));
@@ -175,7 +197,7 @@ public class TismatisRoadsShared {
     }
 
     @Nullable
-    public static BlockEntityType RegisterABlockEntity(Block blk, String path, ItemGroup it, FabricBlockEntityTypeBuilder.Factory<? extends BlockEntity> factory )
+    public static BlockEntityType<?> RegisterABlockEntity(Block blk, String path, ItemGroup it, FabricBlockEntityTypeBuilder.Factory<? extends BlockEntity> factory )
     {
         Block NewBLK = Registry.register(Registry.BLOCK, new Identifier(MODID, path), blk);
         RegisterAItem(new BlockItem(blk, new FabricItemSettings().group(it)), path);

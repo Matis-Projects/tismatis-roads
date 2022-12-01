@@ -1,0 +1,6 @@
+{
+	"parent": "tismatis-roads:block/msgboard",
+	"textures": {
+		"0": "minecraft:block/white_concrete"
+	}
+}
