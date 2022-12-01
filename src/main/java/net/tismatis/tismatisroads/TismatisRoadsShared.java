@@ -2,6 +2,7 @@ package net.tismatis.tismatisroads;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
@@ -13,6 +14,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tismatis.tismatisroads.blocks.*;
 import net.tismatis.tismatisroads.items.*;
+import net.tismatis.tismatisroads.network.MessageBoardUpdateC2S;
+import net.tismatis.tismatisroads.network.NetworkConstants;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,6 +105,10 @@ public class TismatisRoadsShared {
                 }
         /* CREATIVE TAB */
 
+        ServerPlayNetworking.registerGlobalReceiver(NetworkConstants.UPDATE_MESSAGE_BOARD_C2S, (server, player, handler, buf, responseSender) -> {
+            MessageBoardUpdateC2S packet = new MessageBoardUpdateC2S();
+            packet.receive(server, player, handler, buf, responseSender);
+        });
 
         LOGGER.info("[TismatisRoads-FABRIC] The shared part has loaded!");
     }

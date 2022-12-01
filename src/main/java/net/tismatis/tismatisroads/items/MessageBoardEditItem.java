@@ -31,7 +31,10 @@ public class MessageBoardEditItem extends Item {
                 serverPlayer.networkHandler.sendPacket(new BlockUpdateS2CPacket(world, sign.getPos()));
 
                 PacketByteBuf buf = PacketByteBufs.create();
-                buf.writeBlockPos(sign.getPos());
+                buf.writeBlockPos(sign.getPos().mutableCopy());
+                buf.writeText(sign.getTextOnRow(0, false));
+                buf.writeText(sign.getTextOnRow(1, false));
+                buf.writeText(sign.getTextOnRow(2, false));
                 ServerPlayNetworking.send(serverPlayer, NetworkConstants.OPEN_MESSAGE_BOARD_S2C, buf);
             }
         }

@@ -11,7 +11,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.UUID;
 import java.util.function.Function;
 
 import static net.tismatis.tismatisroads.TismatisRoadsShared.MESSAGE_BOARD_BLOCK_ENTITY;
@@ -102,7 +101,7 @@ public class MessageBoardBlockEntity extends BlockEntity {
 		}
 	}
 
-	private Text[] getTexts(boolean filtered) {
+	public Text[] getTexts(boolean filtered) {
 		return filtered ? this.filteredTexts : this.texts;
 	}
 

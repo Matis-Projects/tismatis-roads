@@ -8,4 +8,9 @@ public class NetworkConstants {
 			TismatisRoadsShared.MODID,
 			"open_msgboard_s2c"
 	);
+
+	public static Identifier UPDATE_MESSAGE_BOARD_C2S = new Identifier(
+			TismatisRoadsShared.MODID,
+			"update_msgboard_c2s"
+	);
 }
